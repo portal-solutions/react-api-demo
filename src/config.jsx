@@ -10,7 +10,7 @@
 import preval from 'preval.macro';
 
 const api = {
-  getEmployeesUri: 'http://dummy.restapiexample.com/api/v1/employees'
+  getEmployeesUri: 'https://dummy.restapiexample.com/api/v1/employees'
 };
 
 const application = {
