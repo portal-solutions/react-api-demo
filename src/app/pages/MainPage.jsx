@@ -45,8 +45,12 @@ const MainPage = () => {
     <>
       <h2 className="h6">
         Response from{' '}
-        <a href={config.api.getEmployeesUri} rel="noopener noreferrer" target="_blank">
-          {config.api.getEmployeesUri}
+        <a
+          href={config.api.getEmployeesUri}
+          rel="noopener noreferrer"
+          target="_blank"
+          title={config.api.getEmployeesUri}>
+          Employees API
           <sup>
             <FontAwesomeIcon icon={faExternalLinkAlt} className="ml-1 small" />
           </sup>
