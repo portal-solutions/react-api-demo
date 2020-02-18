@@ -8,17 +8,17 @@
  */
 
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import MainContainer from './containers/MainContainer';
 import MainPage from './pages/MainPage';
 
 const App = () => (
   <MainContainer>
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
         <Route exact path="/" component={MainPage} />
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   </MainContainer>
 );
 
