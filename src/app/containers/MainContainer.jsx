@@ -48,11 +48,8 @@ const MainContainer = ({ children }) => {
         </Card>
         <div className="small text-muted text-right">
           View source on{' '}
-          <a
-            href="https://gccode.ssc-spc.gc.ca/iitb-dgiit/PortalSolutions/samples-and-examples/react-api-demo"
-            rel="noopener noreferrer"
-            target="_blank">
-            GCCode
+          <a href="https://github.com/portal-solutions/react-api-demo/" rel="noopener noreferrer" target="_blank">
+            GitHub
             <sup>
               <FontAwesomeIcon icon={faExternalLinkAlt} className="ml-1 small" />
             </sup>

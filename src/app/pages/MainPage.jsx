@@ -35,7 +35,7 @@ const MainPage = () => {
 
   if (error) {
     return (
-      <Alert color="danger">
+      <Alert color="danger" className="m-0">
         There was an error fetching data: &quot;<em>{error.message}</em>&quot;.
       </Alert>
     );
