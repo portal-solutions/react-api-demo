@@ -9,8 +9,8 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import ApiProvider from './ApiProvider';
-import PageMetadataProvider from './PageMetadataProvider';
+import ApiProvider from './ApiContext';
+import PageMetadataProvider from './PageMetadataContext';
 
 /**
  * A context provider that provides all other context providers.

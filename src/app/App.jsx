@@ -10,7 +10,7 @@
 import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import MainContainer from './containers/MainContainer';
-import AppProviders from './contexts/AppProviders';
+import AppProviders from './contexts/AppContext';
 import MainPage from './pages/MainPage';
 
 const App = () => (

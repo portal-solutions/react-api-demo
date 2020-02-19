@@ -15,8 +15,8 @@ import { Alert, Button } from 'reactstrap';
 import config from '../../config';
 import Debug from '../components/Debug';
 import Spinner from '../components/Spinner';
-import { useApi } from '../contexts/ApiProvider';
-import { usePageTitle } from '../contexts/PageMetadataProvider';
+import { useApi } from '../contexts/ApiContext';
+import { usePageTitle } from '../contexts/PageMetadataContext';
 
 const MainPage = () => {
   usePageTitle('React API demo');

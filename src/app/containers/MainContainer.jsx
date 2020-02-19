@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Card, CardBody, CardHeader, Col, Container } from 'reactstrap';
 import config from '../../config';
-import { usePageMetadata } from '../contexts/PageMetadataProvider';
+import { usePageMetadata } from '../contexts/PageMetadataContext';
 
 const ApplicationVersion = () => (
   <div className="text-right" style={{ fontSize: '75%' }}>
