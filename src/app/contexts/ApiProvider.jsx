@@ -11,14 +11,13 @@ import PropTypes from 'prop-types';
 import React, { createContext, useContext } from 'react';
 import config from '../../config';
 
-const ApiContext = createContext();
+const Context = createContext();
+const useApi = () => useContext(Context);
 
 const ApiProvider = ({ children }) => {
   const getEmployees = async () => (await fetch(config.api.employeesUri)).json();
-  return <ApiContext.Provider value={{ getEmployees }}>{children}</ApiContext.Provider>;
+  return <Context.Provider value={{ getEmployees }}>{children}</Context.Provider>;
 };
-
-const useApi = () => useContext(ApiContext);
 
 ApiProvider.propTypes = {
   children: PropTypes.node.isRequired

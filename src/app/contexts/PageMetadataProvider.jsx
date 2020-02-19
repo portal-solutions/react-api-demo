@@ -8,25 +8,37 @@
  */
 
 import PropTypes from 'prop-types';
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useReducer } from 'react';
 
-const PageMetadataContext = createContext();
+const Context = createContext();
+const usePageMetadata = () => useContext(Context);
 
-const PageMetadataProvider = ({ children }) => {
-  const [pageMetadata, setPageMetadata] = useState({
-    pageTitle: 'React API demo'
-  });
-
-  return (
-    <PageMetadataContext.Provider value={{ pageMetadata, setPageMetadata }}>{children}</PageMetadataContext.Provider>
-  );
+usePageMetadata.types = {
+  pageTitle: 'PAGE_TITLE'
 };
 
-const usePageMetadata = () => useContext(PageMetadataContext);
+const reducer = (state, action) => {
+  switch (action.type) {
+    case usePageMetadata.types.pageTitle:
+      return { pageTitle: action.payload };
+    default:
+      throw new Error(`Unhandled action type: ${action.type}`);
+  }
+};
+
+const PageMetadataProvider = ({ children }) => {
+  const [pageMetadata, dispatch] = useReducer(reducer, {});
+  return <Context.Provider value={{ dispatch, pageMetadata }}>{children}</Context.Provider>;
+};
+
+const usePageTitle = (pageTitle) => {
+  const { dispatch } = usePageMetadata();
+  useEffect(() => dispatch({ type: usePageMetadata.types.pageTitle, payload: pageTitle }), [dispatch, pageTitle]);
+};
 
 PageMetadataProvider.propTypes = {
   children: PropTypes.node.isRequired
 };
 
 export default PageMetadataProvider;
-export { usePageMetadata };
+export { usePageMetadata, usePageTitle };

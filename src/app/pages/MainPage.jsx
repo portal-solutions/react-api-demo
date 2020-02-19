@@ -9,24 +9,20 @@
 
 import { faExternalLinkAlt, faRedo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAsync } from 'react-async';
 import { Alert, Button } from 'reactstrap';
 import config from '../../config';
 import Debug from '../components/Debug';
 import Spinner from '../components/Spinner';
 import { useApi } from '../contexts/ApiProvider';
-import { usePageMetadata } from '../contexts/PageMetadataProvider';
+import { usePageTitle } from '../contexts/PageMetadataProvider';
 
 const MainPage = () => {
-  const { getEmployees } = useApi();
-  const { setPageMetadata } = usePageMetadata();
-  const { data, error, isPending, reload } = useAsync(getEmployees);
+  usePageTitle('React API demo');
 
-  useEffect(() => {
-    // TODO :: GjB :: figure out how to move the useEffect() call into a hook
-    setPageMetadata({ pageTitle: 'React API demo' });
-  }, [setPageMetadata]);
+  const { getEmployees } = useApi();
+  const { data, error, isPending, reload } = useAsync(getEmployees);
 
   if (isPending) {
     return <Spinner text="Fetching API data..." />;
