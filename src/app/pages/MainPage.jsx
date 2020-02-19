@@ -7,18 +7,16 @@
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  */
 
-/* eslint-disable react/jsx-props-no-spreading */
-
-import { faRedo, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faExternalLinkAlt, faRedo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect } from 'react';
 import { useAsync } from 'react-async';
 import { Alert, Button } from 'reactstrap';
+import config from '../../config';
 import Debug from '../components/Debug';
 import Spinner from '../components/Spinner';
 import { useApi } from '../contexts/ApiProvider';
 import { usePageMetadata } from '../contexts/PageMetadataProvider';
-import * as config from '../../config';
 
 const MainPage = () => {
   const { getEmployees } = useApi();
@@ -26,6 +24,7 @@ const MainPage = () => {
   const { data, error, isPending, reload } = useAsync(getEmployees);
 
   useEffect(() => {
+    // TODO :: GjB :: figure out how to move the useEffect() call into a hook
     setPageMetadata({ pageTitle: 'React API demo' });
   }, [setPageMetadata]);
 
@@ -45,17 +44,14 @@ const MainPage = () => {
     <>
       <h2 className="h6">
         Response from{' '}
-        <a
-          href={config.api.getEmployeesUri}
-          rel="noopener noreferrer"
-          target="_blank"
-          title={config.api.getEmployeesUri}>
+        <a href={config.api.employeesUri} rel="noopener noreferrer" target="_blank" title={config.api.employeesUri}>
           Employees API
           <sup>
             <FontAwesomeIcon icon={faExternalLinkAlt} className="ml-1 small" />
           </sup>
         </a>
       </h2>
+
       <Debug data={data} />
 
       <div className="text-right">

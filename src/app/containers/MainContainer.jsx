@@ -12,49 +12,57 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Card, CardBody, CardHeader, Col, Container } from 'reactstrap';
-import * as config from '../../config';
+import config from '../../config';
 import { usePageMetadata } from '../contexts/PageMetadataProvider';
+
+const ApplicationVersion = () => (
+  <div className="text-right" style={{ fontSize: '75%' }}>
+    <em>
+      <code>
+        v{config.application.version} ({config.application.gitCommit}, {config.application.dateModified})
+      </code>
+    </em>
+  </div>
+);
 
 const PageTitle = () => {
   const { pageMetadata } = usePageMetadata();
 
   if (pageMetadata.pageTitle) {
     return (
-      <>
-        <CardHeader tag="h1" className="h4 font-weight-bold">
-          {pageMetadata.pageTitle}
-        </CardHeader>
-      </>
+      <CardHeader tag="h1" className="h4 font-weight-bold">
+        {pageMetadata.pageTitle}
+      </CardHeader>
     );
   }
 
   return null;
 };
 
+const ViewSource = () => (
+  <div className="small text-muted text-right">
+    View source on{' '}
+    <a href="https://github.com/portal-solutions/react-api-demo/" rel="noopener noreferrer" target="_blank">
+      GitHub
+      <sup>
+        <FontAwesomeIcon icon={faExternalLinkAlt} className="ml-1 small" />
+      </sup>
+    </a>
+  </div>
+);
+
 const MainContainer = ({ children }) => {
   return (
     <Container className="py-3">
       <Col md="10" lg="8" className="mx-auto">
-        <div className="text-right" style={{ fontSize: '75%' }}>
-          <em>
-            <code>
-              v{config.application.version} ({config.application.gitCommit}, {config.application.dateModified})
-            </code>
-          </em>
-        </div>
+        <ApplicationVersion />
+
         <Card color="light shadow">
           <PageTitle />
           <CardBody>{children}</CardBody>
         </Card>
-        <div className="small text-muted text-right">
-          View source on{' '}
-          <a href="https://github.com/portal-solutions/react-api-demo/" rel="noopener noreferrer" target="_blank">
-            GitHub
-            <sup>
-              <FontAwesomeIcon icon={faExternalLinkAlt} className="ml-1 small" />
-            </sup>
-          </a>
-        </div>
+
+        <ViewSource />
       </Col>
     </Container>
   );

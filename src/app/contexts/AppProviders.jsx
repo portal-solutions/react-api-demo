@@ -12,14 +12,17 @@ import React from 'react';
 import ApiProvider from './ApiProvider';
 import PageMetadataProvider from './PageMetadataProvider';
 
-const AppProvider = ({ children }) => (
+/**
+ * A context provider that provides all other context providers.
+ */
+const AppProviders = ({ children }) => (
   <ApiProvider>
     <PageMetadataProvider>{children}</PageMetadataProvider>
   </ApiProvider>
 );
 
-AppProvider.propTypes = {
+AppProviders.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-export default AppProvider;
+export default AppProviders;

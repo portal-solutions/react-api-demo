@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
 import React, { createContext, useContext, useState } from 'react';
 
 const PageMetadataContext = createContext();
-const usePageMetadata = () => useContext(PageMetadataContext);
 
 const PageMetadataProvider = ({ children }) => {
   const [pageMetadata, setPageMetadata] = useState({
@@ -22,6 +21,8 @@ const PageMetadataProvider = ({ children }) => {
     <PageMetadataContext.Provider value={{ pageMetadata, setPageMetadata }}>{children}</PageMetadataContext.Provider>
   );
 };
+
+const usePageMetadata = () => useContext(PageMetadataContext);
 
 PageMetadataProvider.propTypes = {
   children: PropTypes.node.isRequired

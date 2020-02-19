@@ -16,11 +16,5 @@ import 'react-app-polyfill/stable';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './app/App';
-import AppProvider from './app/contexts/AppProvider';
 
-ReactDOM.render(
-  <AppProvider>
-    <App />
-  </AppProvider>,
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));

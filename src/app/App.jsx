@@ -10,16 +10,19 @@
 import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import MainContainer from './containers/MainContainer';
+import AppProviders from './contexts/AppProviders';
 import MainPage from './pages/MainPage';
 
 const App = () => (
-  <MainContainer>
-    <HashRouter>
-      <Switch>
-        <Route exact path="/" component={MainPage} />
-      </Switch>
-    </HashRouter>
-  </MainContainer>
+  <AppProviders>
+    <MainContainer>
+      <HashRouter>
+        <Switch>
+          <Route exact path="/" component={MainPage} />
+        </Switch>
+      </HashRouter>
+    </MainContainer>
+  </AppProviders>
 );
 
 export default App;

@@ -7,22 +7,19 @@
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  */
 
-import preval from 'preval.macro';
+import { getDateModified, getGitCommit } from './app/utils/MiscUtils';
 
-const api = {
-  getEmployeesUri: 'https://dummy.restapiexample.com/api/v1/employees'
+const config = {
+  api: {
+    employeesUri: process.env.REACT_APP_API_EMPLOYEES_URI
+  },
+
+  application: {
+    dateModified: getDateModified(),
+    debug: process.env.REACT_APP_DEBUG,
+    gitCommit: getGitCommit(),
+    version: process.env.REACT_APP_VERSION
+  }
 };
 
-const application = {
-  dateModified: preval('module.exports = new Date().toISOString()'),
-  debug: process.env.REACT_APP_DEBUG,
-  gitCommit: preval(`
-    module.exports = require("child_process")
-      .execSync("git rev-parse HEAD")
-      .toString()
-      .substring(0, 8)
-  `),
-  version: process.env.REACT_APP_VERSION
-};
-
-export { api, application };
+export default config;

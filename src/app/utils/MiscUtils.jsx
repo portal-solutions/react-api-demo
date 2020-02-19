@@ -7,13 +7,26 @@
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  */
 
-/* eslint-disable import/prefer-default-export */
+import preval from 'preval.macro';
 
-/**
- * Utility function that simply waits for an amount of time.
- */
+const getDateModified = () => {
+  return preval(`
+    module.exports = new Date()
+      .toISOString()
+  `);
+};
+
+const getGitCommit = () => {
+  return preval(`
+    module.exports = require("child_process")
+      .execSync("git rev-parse HEAD")
+      .toString()
+      .substring(0, 8)
+  `);
+};
+
 const sleep = (milliseconds) => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
 
-export { sleep };
+export { getDateModified, getGitCommit, sleep };
